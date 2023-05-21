@@ -30,8 +30,7 @@ watch
   => Set.Set Glob.Pattern -> ClearScreen -> AllowIgnored -> RIO env ()
   -> RIO env ()
 watch globs shouldClear allowIgnored action = do
-  let config = Watch.defaultConfig { Watch.confDebounce = Watch.NoDebounce }
-  fileWatchConf config shouldClear allowIgnored $ \getGlobs -> do
+  fileWatchConf Watch.defaultConfig shouldClear allowIgnored $ \getGlobs -> do
     getGlobs globs
     action
 
